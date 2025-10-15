@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify
 from services.db import get_db_connection
 
-remove_bill = Blueprint("remove_bill", __name__)
+remove_bill_bp = Blueprint("remove_bill", __name__)
 
-@remove_bill.route("/remove_bill/<int:id>", methods=["DELETE"])
+@remove_bill_bp.route("/remove_bill/<int:id>", methods=["DELETE"])
 def remove_bill(id):
     connection = get_db_connection()
     cursor = connection.cursor()
