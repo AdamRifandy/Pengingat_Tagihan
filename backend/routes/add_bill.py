@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify
 from services.db import get_db_connection
 
-add_bill = Blueprint("add_bill", __name__)
+add_bill_bp = Blueprint("add_bill", __name__)
 
-@add_bill.route("/add_bill", methods=["POST"])
+@add_bill_bp.route("/add_bill", methods=["POST"])
 def add_bill():
     data = request.get_json()
     
