@@ -1,10 +1,15 @@
-import _mysql_connector
+import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-def get_db_connection():
-    connection = _mysql_connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="test_db"
-    )
-    return connection
+load_dotenv()
+
+engine = create_engine(f"mysql+mysqlconnector://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}/{os.getenv("DB_NAME")}", echo=True)
+
+Base = declarative_base()
+
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+SessionLocal = sessionmaker(bind=engine)
