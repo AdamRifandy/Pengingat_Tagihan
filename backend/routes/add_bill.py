@@ -6,7 +6,7 @@ add_bill_bp = Blueprint("add_bill", __name__)
 
 @add_bill_bp.route("/add_bill", methods=["POST"])
 def add_bill():
-    data = request.get_json
+    data = request.get_json()
     
     db = SessionLocal()
     user_identifier = session.get("user_id")
